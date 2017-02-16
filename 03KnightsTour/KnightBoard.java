@@ -12,11 +12,11 @@ public class KnightBoard{
 	if(kN > board.length * board[0].length){
 	    return true;
 	}
-	int[] changes = {1,2,1,-2,-1,2,-1,-2,2,1,2,-1,-2,1,-2,-2};
+	int[] changes = {1,2,1,-2,-1,2,-1,-2};
 	if(row < board.length && row >= 0 && col < board[0].length && col >= 0 && board[row][col] == 0){
 	    board[row][col] = kN;
 	    for(int i = 0; i < changes.length; i+=2){
-		if(hSolve(row + changes[i], col + changes[i+1], kN + 1)){
+		if(hSolve(row + changes[i], col + changes[i+1], kN + 1) || hSolve(row + changes[i + 1], col + changes[i], kN + 1)){
 		    return true;
 		}
 	    }
@@ -24,6 +24,38 @@ public class KnightBoard{
 	}
 	return false;
     }
+    /*
+    public void betterSolve(){
+	bHSolve(0,0,1);
+    }
+
+    public int[][] generatePossibleMoves(){
+	int[] changes = {1,2,1,-2,-1,2,-1,-2};
+	for(int row = 0; row < board.length; row++){
+	    for(int col = 0; col < board.length; col++){
+		for(int i = 0; i < changes.length; i+=2){
+
+		}
+	    }
+	}
+    }
+
+    public boolean bHSolve(int row, int col, int kN){
+	if(kN > board.length * board[0].length){
+	    return true;
+	}
+	int[] changes = {1,2,1,-2,-1,2,-1,-2};
+	if(row < board.length && row >= 0 && col < board[0].length && col >= 0 && board[row][col] == 0){
+	    board[row][col] = kN;
+	    for(int i = 0; i < changes.length; i+=2){
+		if(hSolve(row + changes[i], col + changes[i+1], kN + 1) || hSolve(row + changes[i + 1], col + changes[i], kN + 1)){
+		    return true;
+		}
+	    }
+	    board[row][col] = 0;
+	}
+	return false;
+	}*/
 
     public String toString(){
 	String temp = "";
