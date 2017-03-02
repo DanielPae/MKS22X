@@ -22,20 +22,26 @@ public class Maze{
 
     public Maze(String filename){
 	String temp = "";
+	int numRow = 1;
+	int numCol = 0;
 	try{
 	    Scanner fileReader = new Scanner(new File(filename));
+	    temp = fileReader.nextLine();
+	    numCol = temp.length();
 	    while(fileReader.hasNextLine()){
 		temp = temp + fileReader.nextLine() + "\n";
+		numRow++;
 	    }
-	    System.out.println(temp);
+	    char[][] moze = new char[numRow][numCol];
+	    for(int r = 0; r < numRow; r++){
+		for(int c = 0; c < numCol; c++){
+		    moze[r][c] = temp.charAt(r * numCol + c);
+		}
+	    }maze = moze;
 	}
 	catch(FileNotFoundException e){
 	    System.out.print("file not found");
 	    System.exit(0);
-	}
-        char[][] moze
-	for(int i = 0; i < temp.length(); i++){
-	    
 	}
     }
     /*
@@ -96,8 +102,20 @@ public class Maze{
         return false; //so it compiles
     }
 	*/
+
+    public String toString(){
+	String temp = "";
+	for(int r = 0; r < maze.length; r++){
+	    for(int c = 0; c < maze[0].length; c++){
+		temp = temp + maze[r][c];
+	    }
+	    temp = temp + "\n";
+	}return temp;
+    }
+
     public static void main(String[] args){
 	Maze a = new Maze("data1.dat");
+	System.out.println(a);
     }
 }
 
