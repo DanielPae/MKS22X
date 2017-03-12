@@ -60,7 +60,63 @@ public class USACO{
 	}
     }
 
+
+
+    public static int bronze(String fileName){
+	Scanner sc = null;
+	try{
+	    sc = new Scanner(new File(fileName));
+	}catch(FileNotFoundException e){
+	    System.out.println("file not found");
+	    System.exit(1);
+	}
+
+	int[][] lake = new int[sc.nextInt()][sc.nextInt()];
+	int elevation = sc.nextInt();
+	int inst = sc.nextInt();
+
+	for(int r = 0; r < lake.length; r++){
+	    for(int c = 0; c < lake[0].length; c++){
+		lake[r][c] = sc.nextInt();
+	    }
+	}
+	for(int i = 0; i < inst; i++){
+	    stomp(sc.nextInt() - 1, sc.nextInt() - 1, sc.nextInt(), lake);
+	}
+	
+	return total(lake, elevation) * 72 * 72;
+    }
+
+    public static void stomp(int r, int c, int digAmount, int[][] lake){
+	int highest = 0;
+	for(int row = r; row < r + 3; row++){
+	    for(int col = c; col < c + 3; col++){
+		if(lake[row][col] > highest){
+		    highest = lake[row][col];
+		}
+	    }
+	}int newTop = highest - digAmount;
+	for(int row = r; row < r + 3; row++){
+	    for(int col = c; col < c + 3; col++){
+		if(lake[row][col] > newTop){
+		    lake[row][col] = newTop;
+		}
+	    }
+	}
+    }
+
+    public static int total(int[][] lake, int top){
+	int t = 0;
+        for(int r = 0; r < lake.length; r++){
+	    for(int c = 0; c < lake[0].length; c++){
+		if(top - lake[r][c] > 0){
+		    t += top - lake[r][c];
+		}
+	    }
+	}return t;
+    }
+    
     public static void main(String args[]){
-	System.out.println(silver("test.txt"));
+
     }
 }
