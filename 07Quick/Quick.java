@@ -64,7 +64,6 @@ public class Quick{
     }
 
 
-
     private static void swap(int[] data, int low, int high){
 	int temp = data[low];
 	data[low] = data[high];
@@ -78,13 +77,14 @@ public class Quick{
 		temp[x] = rm.nextInt(15);
 		}*/
 	int[] temp = {9,8,7,6,5,4,3,2,1,0};
-	for(int a : temp){
-	    System.out.print(a + " ");
-	}System.out.print("\n");
-	quickselect(temp, 4);
-	for(int a : temp){
-	    System.out.print(a + " ");
-	}System.out.print("\n" + "\n");
+	boolean worked = true;
+	quicksort(temp);
+	for(int i = 1; i < temp.length; i++){
+	    if(temp[i] < temp[i - 1]){
+	        worked = false;
+		i = temp.length + 1;
+	    }
+	}System.out.print(worked + "\n");
     }
 
 }
