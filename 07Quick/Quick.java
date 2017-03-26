@@ -68,6 +68,7 @@ public class Quick{
     }
     
     public static void main(String[] args){
+	/*
 	for(int i = 0; i < 1; i++){
 	    Random rm = new Random();
 	    int[] temp = new int[1000000];
