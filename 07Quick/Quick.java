@@ -51,15 +51,12 @@ public class Quick{
 	    }
 	}swap(data, start, lowest - 1);
 	System.out.println(lowest - 1 + " " + mid + " " + highest + " " + piviot);
-	for(int a : data){
-	    System.out.print(a + " ");
-	}System.out.print("\n");
-	if(k >= lowest && k < mid){
+	if(k >= lowest - 1 && k < mid){
 	    return data[k];
 	}if(k < lowest){
 	    return quickselectH(data,k,start,lowest - 1);
 	}else{
-	    return quickselectH(data,k,lowest, end);
+	    return quickselectH(data,k,mid, end);
 	}
     }
 
@@ -69,22 +66,27 @@ public class Quick{
 	data[low] = data[high];
 	data[high] = temp;
     }
+    
     public static void main(String[] args){
-	/*for(int i = 0; i < 100; i++){
+	for(int i = 0; i < 1; i++){
 	    Random rm = new Random();
-	    int[] temp = new int[15];
-	    for(int x = 0; x < 15; x++){
-		temp[x] = rm.nextInt(15);
-		}*/
-	int[] temp = {9,8,7,6,5,4,3,2,1,0};
-	boolean worked = true;
-	quicksort(temp);
-	for(int i = 1; i < temp.length; i++){
-	    if(temp[i] < temp[i - 1]){
-	        worked = false;
-		i = temp.length + 1;
+	    int[] temp = new int[1000000];
+	    for(int x = 0; x < 1000000; x++){
+		temp[x] = rm.nextInt(1000000000);
 	    }
-	}System.out.print(worked + "\n");
+	    boolean worked = true;
+	    System.out.println(quickselect(temp, 2));
+	    quicksort(temp);
+	    System.out.println(temp[2] + "\n");
+	    for(int a = 0; a < 15; a++){
+		System.out.print(temp[a] + " ");
+	    }/*
+	    for(int i = 1; i < temp.length; i++){
+		if(temp[i] < temp[i - 1]){
+		    worked = false;
+		    i = temp.length + 1;
+		}
+		}System.out.print(worked + "\n");*/
+	}
     }
-
 }
