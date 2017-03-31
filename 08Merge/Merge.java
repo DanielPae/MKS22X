@@ -51,6 +51,7 @@ public class Merge{
     }
 
     public static void main(String[] args){
+	/*
 	Random rm = new Random();
 	for(int k = 0; k < 100; k++){
 	    int[] temp = new int[10000000];
@@ -65,7 +66,7 @@ public class Merge{
 		    i = temp.length + 1;
 		}
 	    }System.out.print(worked + "\n");
-	}
+	    }*/
     }
 }
 
