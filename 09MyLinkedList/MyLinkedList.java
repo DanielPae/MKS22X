@@ -1,4 +1,7 @@
-public class MyLinkedList{
+import java.lang.Iterable;
+import java.util.Iterator;
+import java.lang.UnsupportedOperationException;
+public class MyLinkedList implements Iterable<Integer>{
     private int size;
     private LNode first, last;
 
@@ -119,6 +122,9 @@ public class MyLinkedList{
 	return -1;
     }
 
+    public MyLinkedListIterator iterator(){
+	return new MyLinkedListIterator(this);
+    }
 
     /*       FINISH LATER
 
@@ -179,6 +185,28 @@ public class MyLinkedList{
 	    return "(" + preValue + ") " + value + " (" + nextValue + ")";
 	}
     }
+
+    class MyLinkedListIterator implements Iterator<Integer>{
+	public LNode current;
+	
+
+	public MyLinkedListIterator(MyLinkedList i){
+	    current = i.first;
+	}
+	
+	public boolean hasNext(){
+	    return current.next != null;
+	}
+
+	public Integer next(){
+	    current = current.next;
+	    return current.value;
+	}
+
+	public void remove(){
+	    throw new UnsupportedOperationException();
+	}
+    }
     
     public static void main(String[] args){
 	int len = 15;
@@ -187,7 +215,11 @@ public class MyLinkedList{
 	    test.add(i);
 	}System.out.println(test);
 	test.add(5,9999999);
-	System.out.println(test.size);
+	System.out.println("\n");
+	
+	for(int a : test){
+	    System.out.print(a + " ");
+	}
     }
 }
 
