@@ -56,11 +56,17 @@ public class MyLinkedList implements Iterable<Integer>{
     }
 
     public int get(int index){
+	if(index < 0 || index >= size){
+	    throw new IndexOutOfBoundsException(); 
+	}
 	return getNthNode(index).value;
     }
 
     //sets the value of LNode at index to newValue
     public int set(int index, int newValue){
+	if(index < 0 || index >= size){
+	    throw new IndexOutOfBoundsException(); 
+	}
         LNode current = getNthNode(index);
 	int ans = current.value;
 	current.value = newValue;
@@ -107,6 +113,9 @@ public class MyLinkedList implements Iterable<Integer>{
 
     //pubilc useable add
     public void add(int index, int value){
+	if(index < 0 || index >= size){
+	    throw new IndexOutOfBoundsException(); 
+	}
 	LNode TBA = new LNode(value);
 	if(index == 0){
 	    TBA.setNext(first);
@@ -119,7 +128,12 @@ public class MyLinkedList implements Iterable<Integer>{
 
     //public useable remove
     public int remove(int index){
-	return -1;
+	if(index < 0 || index >= size){
+	    throw new IndexOutOfBoundsException(); 
+	}
+	LNode toBeRemoved = getNthNode(index);
+	toBeRemoved.prev.setNext(toBeRemoved.next);
+	return toBeRemoved.value;
     }
 
     public MyLinkedListIterator iterator(){
@@ -215,6 +229,7 @@ public class MyLinkedList implements Iterable<Integer>{
 	    test.add(i);
 	}System.out.println(test);
 	test.add(5,9999999);
+	test.remove(5);
 	System.out.println("\n");
 	
 	for(int a : test){
