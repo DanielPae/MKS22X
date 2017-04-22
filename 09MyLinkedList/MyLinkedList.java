@@ -21,11 +21,18 @@ public class MyLinkedList{
 	return true;
     }
 
-    public int get(int index){
-        LNode current = first;
-	for(int i = 0; i < index; i++){
-	    current = current.next;
-	}return current.value;
+    public LNode get(int index){
+	if(index < size / 2){
+	    LNode current = first;
+	    for(int i = 0; i < index; i++){
+		current = current.next;
+	    }return current;
+	}else{
+	    LNode current = last;
+	    for(int i = size - 1; i >= index; i--){
+		current = current.prev;
+	    }return current;
+	}
     }
 
     public int set(int index, int newValue){
@@ -40,8 +47,8 @@ public class MyLinkedList{
     public String toString(){
 	String ans = "";
 	for(int i = 0; i < size - 1; i++){
-	    ans = ans + + get(i) + ", ";
-	}ans = ans + get(size - 1);
+	    ans = ans + get(i).value + ", ";
+	}ans = ans + get(size - 1).value;
 	return ans;
     }
     
@@ -64,7 +71,8 @@ public class MyLinkedList{
 	    LNode goingToAdd = new LNode(value);
 	    for(int i = 0; i < index; i++){
 		current = current.next;
-	    }current.next.prev = current;
+	    }LNode TBA = new LNode(value);
+	    current.next.prev = current;
 	    current.setNext(current);
 	}
     }
@@ -103,7 +111,7 @@ public class MyLinkedList{
 	MyLinkedList test = new MyLinkedList();
 	for(int i = 0; i < len; i++){
 	    test.add(i);
-	}System.out.println(test);
+	}System.out.println(test.get(14).value);
 	test.add(0,9999999);
 	System.out.println(test);
     }
