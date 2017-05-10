@@ -44,7 +44,7 @@ public class MyHeap{
     }
 
     private int pushUp(int index){
-	while(index != 1 && heap[index / 2] > (heap[index] * constant)){
+	while(index != 1 && (heap[index / 2] * constant) < (heap[index] * constant)){
 	    int temp = heap[index];
 	    heap[index] = heap[index / 2];
 	    heap[index / 2] = temp;
@@ -57,12 +57,12 @@ public class MyHeap{
 	int swap = 0;
 	if(size < index * 2) return index;
 	if(size < index * 2 + 1 
-	   || heap[index * 2] < heap[index * 2 + 1] * constant){
+	   || heap[index * 2] * constant > heap[index * 2 + 1] * constant){
 	    swap = index * 2;
 	}else{
 	    swap = index * 2 + 1;
 	}
-	if(heap[index] > heap[swap] * constant){
+	if(heap[index] * constant  < heap[swap] * constant){
 	    heap[index] = heap[swap];
 	    heap[swap] = temp;
 	    return pushDown(swap);
@@ -70,7 +70,7 @@ public class MyHeap{
     }
 
     public static void main(String args[]){
-	MyHeap a = new MyHeap();
+	MyHeap a = new MyHeap(false);
 	String b = "qwertyuiopasdfghj";
 	for(int i = 11; i >= 0; i--){
 	    a.add(i);
