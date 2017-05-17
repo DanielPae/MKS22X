@@ -7,11 +7,25 @@ public class PriorityLocation extends Location{
 	disToStart = dis;
     }
 
-    public int pDisToStart(){
+    public int disToStart(){
 	return disToStart;
     }
 
     public int disToEnd(Location end){
 	return (end.row() - this.row()) + (end.col() - this.col());
+    }
+
+    public int compareTo(PriorityLocation other){
+	if(disToStart > other.disToStart()){
+	    return -1;
+	}else if(other.disToStart() > disToStart()){
+	    return 1;
+	}else{
+	    return 0;
+	}
+    }
+
+    public String toString(){
+	return "(" + row() + ", " + col() + ") ";
     }
 }

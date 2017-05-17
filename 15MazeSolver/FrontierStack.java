@@ -1,17 +1,21 @@
 import java.util.Stack;
 public class FrontierStack implements Frontier{
     
-    private Stack<Location> Locations;
+    private Stack<Location> locations;
+
+    public FrontierStack(){
+	locations = new Stack();
+    }
 
     public void add(Location toAdd){
-
+	locations.push(toAdd);
     }
     
     public Location next(){
-	return new Location(0,0,null);
+	return locations.pop();
     }
 
     public boolean hasNext(){
-	return true;
+	return !locations.empty();
     }
 }
