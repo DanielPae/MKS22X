@@ -1,15 +1,15 @@
 
 public class FrontierPriorityQueue implements Frontier{
     public int size, constant;
-    public PriorityLocation[] heap;
+    public Location[] heap;
 
     public FrontierPriorityQueue(){
-	heap = new PriorityLocation[15];
+	heap = new Location[15];
 	constant = 1;
     }
 
     public FrontierPriorityQueue(boolean isMax){
-	heap = new PriorityLocation[15];
+	heap = new Location[15];
 	if(!isMax){
 	    constant = -1;
 	}else{
@@ -18,10 +18,12 @@ public class FrontierPriorityQueue implements Frontier{
     }
 
     public void add(Location l){
-	PriorityLocation = null;
+	Location s = null;
 	try{
-	    PriorityLocation s = (PriorityLocation)l
-	}catch
+	    s = (Location)l;
+	}catch(ClassCastException e){
+	    System.exit(1);
+	}
 	size++;
 	if(size == heap.length){
 	    reSize();
@@ -33,36 +35,36 @@ public class FrontierPriorityQueue implements Frontier{
 	return size > 0;
     }
 
-    public PriorityLocation next(){
-	PriorityLocation ans = heap[1];
+    public Location next(){
+	Location ans = heap[1];
 	heap[1] = heap[size];
 	size--;
 	pushDown(1);
 	return ans;
     }
 
-    public PriorityLocation remove(){
-	PriorityLocation ans = heap[1];
+    public Location remove(){
+	Location ans = heap[1];
 	heap[1] = heap[size];
 	size--;
 	pushDown(1);
 	return ans;
     }
 
-    public PriorityLocation peak(){
+    public Location peak(){
 	return heap[1];
     }
     
     private void reSize(){
-	PriorityLocation[] ans = new PriorityLocation[size * 2];
-	for(int i = 1; i <= size; i++){
+	Location[] ans = new Location[size * 2 + 1];
+	for(int i = 1; i < size; i++){
 	    ans[i] = heap[i];
 	}heap = ans;
     }
 
     private int pushUp(int index){
 	while(index != 1 && heap[index / 2].compareTo(heap[index]) * constant < 0){
-	    PriorityLocation temp = heap[index];
+	    Location temp = heap[index];
 	    heap[index] = heap[index / 2];
 	    heap[index / 2] = temp;
 	    index = index / 2;
@@ -70,7 +72,7 @@ public class FrontierPriorityQueue implements Frontier{
     }
 
     private int pushDown(int index){
-	PriorityLocation temp = heap[index];
+	Location temp = heap[index];
 	int swap = 0;
 	if(size < index * 2) return index;
 	if(size < index * 2 + 1 
@@ -87,13 +89,6 @@ public class FrontierPriorityQueue implements Frontier{
     }
 
     public static void main(String args[]){
-	FrontierPriorityQueue a = new FrontierPriorityQueue();
-	String b = "qwertyuiopasdfghj";
-	for(int i = 11; i >= 0; i--){
-	    a.add(new PriorityLocation(i,i,i,a.peak()));
-	}System.out.println("");
-        for(int i = 11; i >= 0; i--){
-	    System.out.print(a.remove() + " ");
-	}
+
     }
 }
