@@ -1,13 +1,29 @@
 public class MazeSolver{
     private Maze maze;
     private int endCol, endRow;
-    private boolean aStar;
+    private boolean aStar, animate;
     private Frontier frontier;
 
     public MazeSolver(String filename){
 	maze = new Maze(filename);
 	endCol = maze.getEnd().col();
 	endRow = maze.getEnd().row();
+	animate = false;
+    }
+
+    public MazeSolver(String filename, boolean animate){
+	maze = new Maze(filename);
+	endCol = maze.getEnd().col();
+	endRow = maze.getEnd().row();
+	this.animate = animate; 
+    }
+
+    public String toString(){
+	return "" + maze;
+    }
+
+    public String toString(int a){
+	return maze.toString(a);
     }
 
     public void solve(){
@@ -49,6 +65,9 @@ public class MazeSolver{
 	    else if(addLocations(next, next.row() - 1, next.col())) foundEnd = true;
 	    else if(addLocations(next, next.row(), next.col() + 1)) foundEnd = true;
 	    else if(addLocations(next, next.row(), next.col() - 1)) foundEnd = true;
+	    if(animate){
+		System.out.println(maze.toString(200));
+	    }
 	}
 	if(foundEnd) return frontier.next();
 	else{
@@ -73,10 +92,7 @@ public class MazeSolver{
     
 
     public static void main(String[] args){
-	MazeSolver a = new MazeSolver("data5.txt");
-	a.solve(2);
-	System.out.print(a.maze);
-	
+
     }
 }
 
